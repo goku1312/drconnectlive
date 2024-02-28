@@ -142,6 +142,9 @@ def register(request):
             error_messages = 'Username already exists.'
             messages.info(request, error_messages)
             return HttpResponseRedirect('login')
+        
+
+        
 
         message = get_random_string(length=4, allowed_chars='0123456789')
         request.session['message'] = message
@@ -212,7 +215,7 @@ def logout(request):
 def otp(request):
     email=request.session['emaill']
     return render(request,"otp.html")
-    return render(request,"otp.html" ,{"email" : email})
+    # return render(request,"otp.html" ,{"email" : email})
 
 
 
