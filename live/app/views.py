@@ -63,6 +63,7 @@ def register(request):
         # Get form data
         username = request.POST.get('username')
         email = request.POST.get('email')
+        request.session['emaill'] = email
         phonenumber=request.POST.get("phonenumber")
         password = request.POST.get('password')
 
@@ -137,3 +138,11 @@ def user_login(request):
 def logout(request):
     request.session['is_logged_in']=False
     return HttpResponseRedirect('index')
+
+
+
+
+def otp(request):
+    email=request.session['emaill']
+    return render(request,"otp.html")
+    # return render(request,"otp.html" ,{"email" : email})
