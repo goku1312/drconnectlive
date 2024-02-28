@@ -22,4 +22,5 @@ urlpatterns = [
     path("logout",views.logout),
     path("new_page",views.new_page),
     path("otp",views.otp),
+    # path("resent",views.resent),
 ]
