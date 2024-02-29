@@ -37,35 +37,42 @@
             <div class="col-md-3"></div>
             <div class="col-md-5 mt-5">
                 <div class="bg-white p-5 rounded-3 shadow-sm border">
+                    <form method="POST"  action="verifyotp">
+                        {% csrf_token %}
                     <div>
                         <p class="text-center text-success" style="font-size: 5.5rem;"><i class="fa-solid fa-envelope-circle-check"></i></p>
                         <p class="text-center text-center h5 ">Please check your email</p>
-                        <p class="text-muted text-center">We've sent a code to contact@curfcode.com</p>
+                        <p class="text-muted text-center">We've sent a code to {{email}}</p>
+                      
                         <div class="row pt-4 pb-2" id="otp-inputs">
                             <div class="col-3">
-                                <input class="otp-letter-input" type="text" maxlength="1" oninput="moveToNextInput(this)" />
+                                <input class="otp-letter-input" type="text" name="otp1" maxlength="1" oninput="moveToNextInput(this)" />
                             </div>
                             <div class="col-3">
-                                <input class="otp-letter-input" type="text" maxlength="1" oninput="moveToNextInput(this)" />
+                                <input class="otp-letter-input" type="text" name="otp2" maxlength="1" oninput="moveToNextInput(this)" />
                             </div>
                             <div class="col-3">
-                                <input class="otp-letter-input" type="text" maxlength="1" oninput="moveToNextInput(this)" />
+                                <input class="otp-letter-input" type="text" name="otp3" maxlength="1" oninput="moveToNextInput(this)" />
                             </div>
                             <div class="col-3">
-                                <input class="otp-letter-input" type="text" maxlength="1" oninput="moveToNextInput(this)" />
+                                <input class="otp-letter-input" type="text"  name="otp4" maxlength="1" oninput="moveToNextInput(this)" />
                             </div>
                         </div>
-                        <p class="text-muted text-center">Didn't get the code? <a href="#" class="text-success">Click to resend.</a></p>
+                       
+                        <p class="text-muted text-center">Didn't get the code? <a href="otp" class="text-success" style="text-decoration: none;">Click to resend.</a></p>
 
                         <div class="row pt-5">
                             <div class="col-6">
-                                <button class="btn btn-outline-secondary w-100">Cancel</button>
+                              
+                                <button onclick="window.location.href='login'" class="btn btn-outline-secondary w-100" >Cancel</button>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-success w-100">Verify</button>
+                                <!-- <button class="btn btn-success w-100">Verify</button> -->
+                                <input type="submit" name="Verify" id="verify" class="btn btn-success w-100" value="Verify" >
                             </div>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

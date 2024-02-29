@@ -24,4 +24,6 @@ urlpatterns = [
     path("otp",views.otp),
     # path("resent",views.resent),
     path("newlogin",views.newlogin),
+    path("signin",views.signin),
+    path("verifyotp",views.verifyotp),
 ]

@@ -56,14 +56,14 @@ def compare(request):
     return render(request,"compare.html")
 
 def login(request):
-    return render(request,"login/index12.html")
+    return render(request,"login/signup.html")
 
 def vendordashboard(request):
     return render(request,"vendor-dashboard.html")
 
 
 def new_page(request):
-    return render(request,"signup.html")
+    return render(request,"login/signup.html")
 
 
 
@@ -133,48 +133,27 @@ def register(request):
         # Get form data
         username = request.POST.get('username')
         email = request.POST.get('email')
-        request.session['emaill'] = email
+        
         phonenumber = request.POST.get("phonenumber")
         password = request.POST.get('password')
-
+        request.session['username'] = username
+        request.session['email'] = email
+        request.session['phonenumber'] = phonenumber
+        request.session['password'] = password
         # Check if username already exists
         if Register.objects.filter(username=username).exists():
             error_messages = 'Username already exists.'
             messages.info(request, error_messages)
             return HttpResponseRedirect('login')
         
-
+        else:
+            return HttpResponseRedirect('otp')
         
 
-        message = get_random_string(length=4, allowed_chars='0123456789')
-        request.session['message'] = message
-
-        # Assuming you have a default email address set in your Django settings
-        recipient_email = settings.DEFAULT_FROM_EMAIL
-      
-        print(email)
-       
-        # Send email
-        send_mail(
-    'OTP Verification',
-    f'Hi {username},\n\n'
-    f'Thank you for registering on our website! Your One-Time Password (OTP) for verification is:<strong>{message}</strong>\n\n'
-    f'If you didn\'t register on our website, please ignore this email.\n\n'
-    f'Regards,\n'
-    f'Your Website Team',
-    settings.DEFAULT_FROM_EMAIL,
-    [email],
-    fail_silently=False,
-)
-
-        # Return a success response
-        messages.success(request,
-                         'Successfully registered! An email has been sent to your email address for verification.')
-
-        return render(request, 'otp.html')
+        # return render(request, 'otp.html')
 
     # Render registration form template for GET request
-    return render(request, 'login/index12.html')
+    return render(request, 'login/signup.html')
 
 
 
@@ -198,10 +177,10 @@ def user_login(request):
             # Set a custom error message
             error_message = 'Incorrect Username or password. Please try again.'
             messages.error(request, error_message)
-            return render(request, 'login/index12.html')
+            return render(request, 'login/signin.html')
 
     # Render the login page for GET requests
-    return render(request, 'login/index12.html')
+    return render(request, 'login/signin.html')
 
 
 
@@ -213,43 +192,77 @@ def logout(request):
 
 
 def otp(request):
-    email=request.session['emaill']
-    return render(request,"otp.html")
-    # return render(request,"otp.html" ,{"email" : email})
 
+        username=request.session['username']
+        email=request.session['email']
+        phonenumber=request.session['phonenumber']
+        password=request.session['password']
+        message = get_random_string(length=4, allowed_chars='0123456789')
+        request.session['message'] = message
 
-
-
-
-# def otp(request):
-#  try:
-#         email = request.session['email']
-#         username = request.session['username']
-#         message = request.session['message']
-#         print(message)
-#         otp = request.POST.get('otp')
-#         print(otp)
+        # Assuming you have a default email address set in your Django settings
+        recipient_email = settings.DEFAULT_FROM_EMAIL
+      
+        print(email)
+       
+        # Send email
+        send_mail(
+    'OTP Verification',
+    f'Hi {username},\n\n'
+    f'Thank you for registering on our website! Your One-Time Password (OTP) for verification is: {message}\n\n'
+    f'If you didn\'t register on our website, please ignore this email.\n\n'
+    f'Regards,\n'
+    f'Your Website Team',
+    settings.DEFAULT_FROM_EMAIL,
+    [email],
+    fail_silently=False,
+)
         
+        # Return a success response
+        messages.success(request,
+                         'Successfully registered! An email has been sent to your email address for verification.')
+        return render(request,"otp.html" ,{"email" : email})
 
-#         if int(otp) == int(message):
-#             existing_login =Register.objects.filter(username=username).first()
 
-# # Assuming 'email' is the field representing the email
-#             if existing_login:
-#     # If the username exists, update the email
-#                 existing_login.email = email  # Replace 'new_email' with the email you want to set
-#                 existing_login.save()
-            
-#             return HttpResponseRedirect('login')
-#         else:
-#             messages.error(request, 'Invalid OTP')
-# except Exception as e:
-#     messages.error(request, f'Error in OTP verification: {e}')
 
-#     return render(request,"otp.html")
-    
+
+
 
 
 
 def newlogin(request):
     return render(request,"newlogin.html")
+
+
+
+
+def signin(request):
+    return render(request,"login/signin.html")
+
+
+
+
+def verifyotp(request):
+
+    if request.method == 'POST':
+        # Get values from the input fields
+        otp1 = request.POST.get('otp1', '')
+        otp2 = request.POST.get('otp2', '')
+        otp3 = request.POST.get('otp3', '')
+        otp4 = request.POST.get('otp4', '')
+        username=request.session['username']
+        email=request.session['email']
+        phonenumber=request.session['phonenumber']
+        password=request.session['password']
+
+        # Combine the values into one string
+        combined_otp = otp1 + otp2 + otp3 + otp4
+        message=request.session['message']
+
+        if int(combined_otp) == int(message):
+            user = Register.objects.create(username=username, email=email,phonenumber=phonenumber ,password=password).save()
+            request.session['is_logged_in']=True
+            
+            return HttpResponseRedirect('index')
+        else:
+            messages.error(request, 'Invalid OTP')

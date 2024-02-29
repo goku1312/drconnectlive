@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/gogu/project/doctorlive/env"
+VIRTUAL_ENV="/home/gogu/Videos/doctorlive/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
