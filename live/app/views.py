@@ -63,7 +63,7 @@ def vendordashboard(request):
 
 
 def new_page(request):
-    return render(request,"login/demologin.html")
+    return render(request,"signup.html")
 
 
 
@@ -158,7 +158,7 @@ def register(request):
         send_mail(
     'OTP Verification',
     f'Hi {username},\n\n'
-    f'Thank you for registering on our website! Your One-Time Password (OTP) for verification is: <b>{message}</b>\n\n'
+    f'Thank you for registering on our website! Your One-Time Password (OTP) for verification is:<strong>{message}</strong>\n\n'
     f'If you didn\'t register on our website, please ignore this email.\n\n'
     f'Regards,\n'
     f'Your Website Team',
@@ -248,3 +248,8 @@ def otp(request):
 
 #     return render(request,"otp.html")
     
+
+
+
+def newlogin(request):
+    return render(request,"newlogin.html")
