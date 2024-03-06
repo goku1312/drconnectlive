@@ -273,3 +273,9 @@ def verifyotp(request):
 
 def terms(request):
     return render(request,"terms.html")
+
+
+
+
+def plans(request):
+    return render(request,"plans.html")
