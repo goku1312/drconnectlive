@@ -26,4 +26,5 @@ urlpatterns = [
     path("newlogin",views.newlogin),
     path("signin",views.signin),
     path("verifyotp",views.verifyotp),
+    path("terms",views.terms),
 ]

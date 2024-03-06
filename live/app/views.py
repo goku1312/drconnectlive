@@ -266,3 +266,10 @@ def verifyotp(request):
             return HttpResponseRedirect('index')
         else:
             messages.error(request, 'Invalid OTP')
+
+
+
+
+
+def terms(request):
+    return render(request,"terms.html")
