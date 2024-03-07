@@ -279,3 +279,9 @@ def terms(request):
 
 def plans(request):
     return render(request,"plans.html")
+
+
+
+
+def plans1(request):
+    return render(request,"plans1.html")

@@ -28,5 +28,6 @@ urlpatterns = [
     path("verifyotp",views.verifyotp),
     path("terms",views.terms),
     path("plans",views.plans),
+    path("plans1",views.plans1),
     
 ]
