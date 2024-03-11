@@ -159,13 +159,16 @@ def register(request):
 
 def user_login(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        email = request.POST.get('username')
         password = request.POST.get('password')
+        print(email)
 
         # Check if a user with the provided email and password exists
         user = Register.objects.filter(email=email, password=password).first()
+        # print("1",user.username)
 
         if user:
+            print("12",user.username)
             # User exists, set session flag and redirect to the home page or any other desired URL
             request.session['is_logged_in'] = True
             request.session['email'] = email
@@ -173,11 +176,22 @@ def user_login(request):
             request.session.save()
             return HttpResponseRedirect('index')
         else:
+            print("123",user)
+            # User exists, set session flag and redirect to the home page or any other desired URL
+            
+            if request.session['email'] != email or request.session['username'] !=user.username :
+                error_message = 'Incorrect Username or password. Please try again.'
+                messages.info(request, error_message)
+                print(error_message)
+                return HttpResponseRedirect('signin')
+            else:
             # User does not exist or email/password combination is incorrect
             # Set a custom error message
-            error_message = 'Incorrect Username or password. Please try again.'
-            messages.error(request, error_message)
-            return render(request, 'login/signin.html')
+                error_message = 'Username doesn"t exists.'
+                messages.info(request, error_message)
+                return HttpResponseRedirect('signin')
+            # messages.error(request, error_message)
+            # return render(request, 'login/signin.html')
 
     # Render the login page for GET requests
     return render(request, 'login/signin.html')
