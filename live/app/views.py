@@ -6,7 +6,7 @@ from django_otp.plugins.otp_totp.models import TOTPDevice
 from django.core.mail import send_mail
 from django.conf import settings
 from django.utils.crypto import get_random_string
-# 
+from gtts import gTTS
 
 
 
