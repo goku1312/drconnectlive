@@ -45,6 +45,13 @@
    <!-- Include stylesheet CSS -->
    <link rel="stylesheet" href="static/assets/css/style.css">
 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   
 </head>
 
 <body>
@@ -66,7 +73,7 @@
             <div class="container d-none d-md-block">
                <div class="header_top d-flex align-items-center justify-content-between">
                   <div class="header_top_content d-flex pt-2">
-                     <span class="shipping">Free shipping on all orders over $99</span>
+                     <span class="shipping">Free shipping on all orders over ₹99</span>
                   </div>
                   <div class="header_top_cont d-flex align-items-center pt-2">
                      <a href="vendor.html"><span class="vendor me-4">Become A Vendor</span></a>
@@ -291,11 +298,11 @@
                               </div>
                               <div class="prdc_ctg_product_text">
                                  <div class="prdc_ctg_product_title my-2">
-                                    <h5>Organic Cabbage</h5>
+                                    <h5>Organic Carrot</h5>
                                  </div>
                                  <div class="prdc_ctg_product_price mt-1 product_price">
-                                    <span class="sale_price pe-1">$50.00</span>
-                                    <del>$70.00</del>
+                                    <span class="sale_price pe-1">₹50.00</span>
+                                    <del>₹70.00</del>
                                  </div>
                               </div>
                            </div>
@@ -305,11 +312,11 @@
                               </div>
                               <div class="prdc_ctg_product_text">
                                  <div class="prdc_ctg_product_title my-2">
-                                    <h5>Organic Cabbage</h5>
+                                    <h5>Organic Carrot</h5>
                                  </div>
                                  <div class="prdc_ctg_product_price mt-1 product_price">
-                                    <span class="sale_price pe-1">$40.00</span>
-                                    <del>$60.00</del>
+                                    <span class="sale_price pe-1">₹40.00</span>
+                                    <del>₹60.00</del>
                                  </div>
                               </div>
                            </div>
@@ -319,11 +326,11 @@
                               </div>
                               <div class="prdc_ctg_product_text">
                                  <div class="prdc_ctg_product_title my-2">
-                                    <h5>Organic Cabbage</h5>
+                                    <h5>Organic Cucumber</h5>
                                  </div>
                                  <div class="prdc_ctg_product_price mt-1 product_price">
-                                    <span class="sale_price pe-1">$70.00</span>
-                                    <del>$90.00</del>
+                                    <span class="sale_price pe-1">₹70.00</span>
+                                    <del>₹90.00</del>
                                  </div>
                               </div>
                            </div>
@@ -331,19 +338,19 @@
                               <ul class="ul_li_block mb_30 clearfix">
                                  <li>
                                     <span>Subtotal:</span>
-                                    <span>$215</span>
+                                    <span>₹215</span>
                                  </li>
                                  <li>
                                     <span>Vat 5%:</span>
-                                    <span>$10.75</span>
+                                    <span>₹10.75</span>
                                  </li>
                                  <li>
                                     <span>Discount 15%:</span>
-                                    <span>- $32.25</span>
+                                    <span>- ₹32.25</span>
                                  </li>
                                  <li>
                                     <span>Total:</span>
-                                    <span>$191.8875</span>
+                                    <span>₹191.8875</span>
                                  </li>
                               </ul>
                            </div>
@@ -385,10 +392,16 @@
                <div class="container">
                   <div class="row">
                      <div class="col-lg-3">
-                        <div class="shop_sidebar_searchbar position-relative">
+                        <!-- <div class="shop_sidebar_searchbar position-relative">
                            <input class="rounded-pill" type="search" name="search" placeholder="Search">
                            <i class="fas fa-search position-absolute"></i>
-                        </div>
+                        </div> -->
+                        <div class="shop_sidebar_searchbar position-relative">
+                           <input class="rounded-pill" type="search" id="productSearch" placeholder="Search">
+                           <i class="fas fa-search position-absolute"></i>
+                       </div>
+                       
+
                         <!-- blog category start -->
                         <div class="blog_category" data-aos="fade-up" data-aos-duration="2000">
                            <div class="blog_category_wrap">
@@ -516,8 +529,8 @@
                                  <div class="trending_text">
                                     <span>Mango Juices</span>
                                     <div class="trending_price">
-                                       <del>$22</del>
-                                       <font>$18</font>
+                                       <del>₹22</del>
+                                       <font>₹18</font>
                                     </div>
                                     <ul class="rating_star ul_li">
                                        <li class="active"><i class="fas fa-star"></i></li>
@@ -535,8 +548,8 @@
                                  <div class="trending_text">
                                     <span>Beef Steak</span>
                                     <div class="trending_price">
-                                       <del>$22</del>
-                                       <font>$18</font>
+                                       <del>₹22</del>
+                                       <font>₹18</font>
                                     </div>
                                     <ul class="rating_star ul_li">
                                        <li class="active"><i class="fas fa-star"></i></li>
@@ -554,8 +567,8 @@
                                  <div class="trending_text">
                                     <span>Broccoli</span>
                                     <div class="trending_price">
-                                       <del>$22</del>
-                                       <font>$18</font>
+                                       <del>₹22</del>
+                                       <font>₹18</font>
                                     </div>
                                     <ul class="rating_star ul_li">
                                        <li class="active"><i class="fas fa-star"></i></li>
@@ -573,8 +586,8 @@
                                  <div class="trending_text">
                                     <span>Strawberries</span>
                                     <div class="trending_price">
-                                       <del>$22</del>
-                                       <font>$18</font>
+                                       <del>₹22</del>
+                                       <font>₹18</font>
                                     </div>
                                     <ul class="rating_star ul_li">
                                        <li class="active"><i class="fas fa-star"></i></li>
@@ -592,8 +605,8 @@
                                  <div class="trending_text">
                                     <span>Body Lotion</span>
                                     <div class="trending_price">
-                                       <del>$22</del>
-                                       <font>$18</font>
+                                       <del>₹22</del>
+                                       <font>₹18</font>
                                     </div>
                                     <ul class="rating_star ul_li">
                                        <li class="active"><i class="fas fa-star"></i></li>
@@ -710,8 +723,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹250.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -762,11 +775,11 @@
                                                       <div class="product_content">
                                                          <h3 class="product_title">
                                                             <a href="product-detail.html" target="_blank">Organic
-                                                               Cabbage</a>
+                                                               Carrot</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹350.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -817,11 +830,11 @@
                                                       <div class="product_content">
                                                          <h3 class="product_title">
                                                             <a href="product-detail.html" target="_blank">Organic
-                                                               Cabbage</a>
+                                                               Melon</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹450.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -872,11 +885,11 @@
                                                       <div class="product_content">
                                                          <h3 class="product_title">
                                                             <a href="product-detail.html" target="_blank">Organic
-                                                               Cabbage</a>
+                                                               Cauliflower</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹550.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -930,8 +943,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹650.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -985,8 +998,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹750.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -1040,8 +1053,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹50.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -1095,8 +1108,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹50.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -1150,8 +1163,8 @@
                                                                Cabbage</a>
                                                          </h3>
                                                          <div class="product_price">
-                                                            <span class="sale_price pe-1">$50.00</span>
-                                                            <del>$65.00</del>
+                                                            <span class="sale_price pe-1">₹50.00</span>
+                                                            <del>₹65.00</del>
                                                          </div>
                                                       </div>
                                                    </div>
@@ -1205,8 +1218,8 @@
                                                                   Cabbage</a>
                                                             </h3>
                                                             <div class="product_price">
-                                                               <span class="sale_price pe-1">$50.00</span>
-                                                               <del>$65.00</del>
+                                                               <span class="sale_price pe-1">₹50.00</span>
+                                                               <del>₹65.00</del>
                                                             </div>
                                                             <p class="list_layout_desc">Apparently
                                                                we had reached a great height in the
@@ -1270,8 +1283,8 @@
                                                                   Cabbage</a>
                                                             </h3>
                                                             <div class="product_price">
-                                                               <span class="sale_price pe-1">$50.00</span>
-                                                               <del>$65.00</del>
+                                                               <span class="sale_price pe-1">₹50.00</span>
+                                                               <del>₹65.00</del>
                                                             </div>
                                                             <p class="list_layout_desc">Apparently
                                                                we had reached a great height in the
@@ -1335,8 +1348,8 @@
                                                                   Cabbage</a>
                                                             </h3>
                                                             <div class="product_price">
-                                                               <span class="sale_price pe-1">$50.00</span>
-                                                               <del>$65.00</del>
+                                                               <span class="sale_price pe-1">₹50.00</span>
+                                                               <del>₹65.00</del>
                                                             </div>
                                                             <p class="list_layout_desc">Apparently
                                                                we had reached a great height in the
@@ -1581,11 +1594,11 @@
                                  </div>
                                  <div class="product_content">
                                     <h3 class="product_title">
-                                       <a href="product-detail.html" target="_blank">Organic Cabbage</a>
+                                       <a href="product-detail.html" target="_blank">Organic Melon</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1627,11 +1640,11 @@
                                  </div>
                                  <div class="product_content">
                                     <h3 class="product_title">
-                                       <a href="product-detail.html" target="_blank">Organic Cabbage</a>
+                                       <a href="product-detail.html" target="_blank">Organic Apple</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1673,11 +1686,11 @@
                                  </div>
                                  <div class="product_content">
                                     <h3 class="product_title">
-                                       <a href="product-detail.html" target="_blank">Organic Cabbage</a>
+                                       <a href="product-detail.html" target="_blank">Organic Cocunut</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1722,8 +1735,8 @@
                                        <a href="product-detail.html" target="_blank">Organic Cabbage</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1768,8 +1781,8 @@
                                        <a href="product-detail.html" target="_blank">Organic Cabbage</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1814,8 +1827,8 @@
                                        <a href="product-detail.html" target="_blank">Organic Cabbage</a>
                                     </h3>
                                     <div class="product_price">
-                                       <span class="sale_price pe-1">$50.00</span>
-                                       <del>$65.00</del>
+                                       <span class="sale_price pe-1">₹50.00</span>
+                                       <del>₹65.00</del>
                                     </div>
                                  </div>
                               </div>
@@ -1952,7 +1965,50 @@
 
    </div>
    <!-- body wrap end -->
-
+   <script>
+      $(document).ready(function () {
+         $('#productSearch').on('keyup', function () {
+             var value = $(this).val().toLowerCase();
+             $(".col-sm-6.col-lg-4").filter(function () {
+                 $(this).toggle($(this).find('.product_title a').text().toLowerCase().indexOf(value) > -1)
+             });
+         });
+     });
+     
+      </script>
+      
+   <!-- price filter -->
+      <script>
+         function filterProductsByPrice(minPrice, maxPrice) {
+            $(".col-sm-6.col-lg-4").each(function() {
+              var price = parseFloat($(this).find(".sale_price").text().replace('₹', ''));
+              if (price >= minPrice && price <= maxPrice) {
+                $(this).show();
+              } else {
+                $(this).hide();
+              }
+            });
+          }
+          
+         </script>
+         
+         <script>
+            $(function() {
+               $("#slider-range").slider({
+                 range: true,
+                 min: 0,
+                 max: 5000,
+                 values: [75, 300],
+                 slide: function(event, ui) {
+                   $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+                   filterProductsByPrice(ui.values[0], ui.values[1]);
+                 }
+               });
+               $("#amount").val("₹" + $("#slider-range").slider("values", 0) +
+                 " - ₹" + $("#slider-range").slider("values", 1));
+             });
+             
+         </script>
    <!-- Include jquery js -->
    <script src="static/assets/js/jquery.min.js"></script>
 
