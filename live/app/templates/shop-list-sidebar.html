@@ -1348,7 +1348,7 @@
       <!-- footer section end -->
 
       <!-- view recently products start -->
-
+<!-- 
       <div class="modal fade recent_product" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered">
@@ -1641,7 +1641,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
 
       <!-- view recently products end -->
 
@@ -1817,11 +1817,14 @@
 
 <script>
    $(document).ready(function () {
+      // Save the original set of products as a data attribute
+      $('.row.g-4').data('original-products', $('.col-sm-6.col-lg-4').clone());
+
       $('#sorting-select').on('change', function () {
          var sortingMethod = $(this).val();
-         var products = $('.col-sm-6.col-lg-4').get();
+         var originalProducts = $('.row.g-4').data('original-products').clone(); // Clone the original set of products
 
-         products.sort(function (a, b) {
+         originalProducts.sort(function (a, b) {
             var aValue, bValue;
 
             switch (sortingMethod) {
@@ -1851,7 +1854,11 @@
 
          var parentContainer = $('.row.g-4');
          parentContainer.empty();
-         $.each(products, function (index, element) {
+
+         // Use a counter to limit the number of appended elements
+         var counter = 0;
+
+         $.each(originalProducts, function (index, element) {
             // Add classes based on sortingMethod
             switch (sortingMethod) {
                case 'popularity':
@@ -1867,11 +1874,20 @@
                   $(element).addClass('discount');
                   break;
             }
-            parentContainer.append('<div class="col-sm-6 col-lg-4">' + $(element).html() + '</div>');
+
+            // Limit the number of appended elements to the original count (9)
+            if (counter < 9) {
+               parentContainer.append('<div class="col-sm-6 col-lg-4">' + $(element).html() + '</div>');
+               counter++;
+            }
          });
-      })
+      });
    });
 </script>
+
+
+
+
 
 
 

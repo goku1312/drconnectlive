@@ -1817,11 +1817,14 @@
 
 <script>
    $(document).ready(function () {
+      // Save the original set of products as a data attribute
+      $('.row.g-4').data('original-products', $('.col-sm-6.col-lg-4').clone());
+
       $('#sorting-select').on('change', function () {
          var sortingMethod = $(this).val();
-         var products = $('.col-sm-6.col-lg-4').get();
+         var originalProducts = $('.row.g-4').data('original-products').clone(); // Clone the original set of products
 
-         products.sort(function (a, b) {
+         originalProducts.sort(function (a, b) {
             var aValue, bValue;
 
             switch (sortingMethod) {
@@ -1849,30 +1852,35 @@
          // Remove previous sorting classes
          $('.col-sm-6.col-lg-4').removeClass('popularity priceLowHigh priceHighLow discount');
 
-         // Add classes based on sortingMethod
-         switch (sortingMethod) {
-            case 'popularity':
-               $('.col-sm-6.col-lg-4').addClass('popularity');
-               break;
-            case 'priceLowHigh':
-               $('.col-sm-6.col-lg-4').addClass('priceLowHigh');
-               break;
-            case 'priceHighLow':
-               $('.col-sm-6.col-lg-4').addClass('priceHighLow');
-               break;
-            case 'discount':
-               $('.col-sm-6.col-lg-4').addClass('discount');
-               break;
-         }
-
-         var parentContainer = $('.col-sm-6.col-lg-4').parent();
+         var parentContainer = $('.row.g-4');
          parentContainer.empty();
-         $.each(products, function (index, element) {
-            parentContainer.append(element);
+         $.each(originalProducts, function (index, element) {
+            // Add classes based on sortingMethod
+            switch (sortingMethod) {
+               case 'popularity':
+                  $(element).addClass('popularity');
+                  break;
+               case 'priceLowHigh':
+                  $(element).addClass('priceLowHigh');
+                  break;
+               case 'priceHighLow':
+                  $(element).addClass('priceHighLow');
+                  break;
+               case 'discount':
+                  $(element).addClass('discount');
+                  break;
+            }
+            parentContainer.append('<div class="col-sm-6 col-lg-4">' + $(element).html() + '</div>');
          });
-      })
+      });
    });
 </script>
+
+
+
+
+
+
 
 
 
