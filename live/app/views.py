@@ -299,3 +299,9 @@ def plans(request):
 
 def plans1(request):
     return render(request,"plans1.html")
+
+
+
+
+def doctor(request):
+    return render(request,"doctor.html")
