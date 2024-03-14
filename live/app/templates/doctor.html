@@ -374,11 +374,11 @@
                style="background-image: url(static/assets/images/breadcrumb/breadcrumb1.png);">
                <div class="breadcrumb_cont text-center">
                   <div class="breadcrumb_title">
-                     <h2 class="text-white">Shop</h2>
+                     <h2 class="text-white">Doctor</h2>
                   </div>
                   <ul class="list-unstyled breadcrumb_item d-flex justify-content-center align-items-center text-white">
                      <li><a href="index.html"><i class="fas fa-home active"></i>Home</a></li>
-                     <li><i class="fas fa-chevron-right"></i>Shop</li>
+                     <li><i class="fas fa-chevron-right"></i>Doctor</li>
                     
                   </ul>
                </div>
@@ -642,19 +642,19 @@
                                        </li>
                                        <span class="show_result">Showing 1–18 of 24 results</span>
                                     </ul>
-                                    <form action="#">
-                                       <div class="sorting_from d-flex align-items-center">
-                                          <span class="sorting_from_title">Default Sorting:</span>
-                                          <div class=" clearfix">
-                                             <select>
-                                                <option data-display="Select">Nothing</option>
-                                                <option value="1" selected>Popularity</option>
-                                                <option value="2">Organic</option>
-                                                <option value="4">Fantastic</option>
-                                             </select>
-                                          </div>
+                                    <div class="sorting_from d-flex align-items-center">
+                                       <span class="sorting_from_title">Default Sorting:</span>
+                                       <div class=" clearfix">
+                                          <select id="sorting-select">
+                                             <option data-display="Select">Nothing</option>
+                                             <option value="popularity">Popularity</option>
+                                             <option value="priceLowHigh">Price low to high</option>
+                                             <option value="priceHighLow">Price high to low</option>
+                                             <option value="discount">Discount</option>
+                                           </select>
+                                           
                                        </div>
-                                    </form>
+                                    </div>
                                  </div>
                                  <div class="shop_product_list">
                                     <div class="tab-content" id="pills-tabContent">
@@ -667,7 +667,7 @@
                                                       <div class="product_image_wrap">
                                                          <a class="product_image d-flex justify-content-center align-items-center"
                                                             href="product-detail.html" target="_blank">
-                                                            <img class="pic-1" src="static/assets/images/product/product1.png"
+                                                            <img class="pic-1" src="static/assets/images/product/doctor.png"
                                                                alt="image_not_found">
                                                                <img class="pic-2" src="static/assets/images/product/product3.png"
                                                                alt="image_not_found">
@@ -1995,6 +1995,89 @@
              });
              
          </script>
+
+# popularity
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+      // Save the original set of products as a data attribute
+      $('.row.g-4').data('original-products', $('.col-sm-6.col-lg-4').clone());
+
+      $('#sorting-select').on('change', function () {
+         var sortingMethod = $(this).val();
+         var originalProducts = $('.row.g-4').data('original-products').clone(); // Clone the original set of products
+
+         originalProducts.sort(function (a, b) {
+            var aValue, bValue;
+
+            switch (sortingMethod) {
+               case 'popularity':
+                  aValue = parseFloat($(a).find('.shop_review_text').text().match(/\(([^)]+)\)/)[1]);
+                  bValue = parseFloat($(b).find('.shop_review_text').text().match(/\(([^)]+)\)/)[1]);
+                  return bValue - aValue;
+               case 'priceLowHigh':
+                  aValue = parseFloat($(a).find('.sale_price').text().replace('₹', ''));
+                  bValue = parseFloat($(b).find('.sale_price').text().replace('₹', ''));
+                  return aValue - bValue;
+               case 'priceHighLow':
+                  aValue = parseFloat($(a).find('.sale_price').text().replace('₹', ''));
+                  bValue = parseFloat($(b).find('.sale_price').text().replace('₹', ''));
+                  return bValue - aValue;
+               case 'discount':
+                  aValue = parseInt($(a).find('.badge_discount').text().replace('-', '').replace('%', ''), 10);
+                  bValue = parseInt($(b).find('.badge_discount').text().replace('-', '').replace('%', ''), 10);
+                  return bValue - aValue;
+               default:
+                  return 0;
+            }
+         });
+
+         // Remove previous sorting classes
+         $('.col-sm-6.col-lg-4').removeClass('popularity priceLowHigh priceHighLow discount');
+
+         var parentContainer = $('.row.g-4');
+         parentContainer.empty();
+
+         // Use a counter to limit the number of appended elements
+         var counter = 0;
+
+         $.each(originalProducts, function (index, element) {
+            // Add classes based on sortingMethod
+            switch (sortingMethod) {
+               case 'popularity':
+                  $(element).addClass('popularity');
+                  break;
+               case 'priceLowHigh':
+                  $(element).addClass('priceLowHigh');
+                  break;
+               case 'priceHighLow':
+                  $(element).addClass('priceHighLow');
+                  break;
+               case 'discount':
+                  $(element).addClass('discount');
+                  break;
+            }
+
+            // Limit the number of appended elements to the original count (9)
+            if (counter < 9) {
+               parentContainer.append('<div class="col-sm-6 col-lg-4">' + $(element).html() + '</div>');
+               counter++;
+            }
+         });
+      });
+   });
+</script>
+
+
+
+
+
+
+
+
+
+
    <!-- Include jquery js -->
    <script src="static/assets/js/jquery.min.js"></script>
 

@@ -305,3 +305,8 @@ def plans1(request):
 
 def doctor(request):
     return render(request,"doctor.html")
+
+
+
+def doctorprofile(request):
+    return render(request,"doctorprofile.html")

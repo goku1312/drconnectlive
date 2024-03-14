@@ -30,5 +30,6 @@ urlpatterns = [
     path("plans",views.plans),
     path("plans1",views.plans1),
     path("doctor",views.doctor),
+    path("doctorprofile",views.doctorprofile),
     
 ]
