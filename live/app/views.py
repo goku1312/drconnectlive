@@ -310,3 +310,89 @@ def doctor(request):
 
 def doctorprofile(request):
     return render(request,"doctorprofile.html")
+
+
+
+
+
+def doctorlogin(request):
+    return render(request,"doctorlogin/signup.html")
+
+
+def doctorsignin(request):
+    return render(request,"doctorlogin/signin.html")
+
+
+
+
+
+
+def doctor_login(request):
+    if request.method == 'POST':
+        email = request.POST.get('username')
+        password = request.POST.get('password')
+        print(email)
+
+        # Check if a user with the provided email and password exists
+        user = DoctorRegister.objects.filter(email=email, password=password).first()
+        # print("1",user.username)
+
+        if user:
+            print("12",user.username)
+            # User exists, set session flag and redirect to the home page or any other desired URL
+            request.session['is_logged_in'] = True
+            request.session['email'] = email
+            request.session['username'] =user.username
+            request.session.save()
+            return HttpResponseRedirect('index')
+        else:
+            print("123",user)
+            # User exists, set session flag and redirect to the home page or any other desired URL
+            
+            if request.session['email'] != email or request.session['username'] !=user.username :
+                error_message = 'Incorrect Username or password. Please try again.'
+                messages.info(request, error_message)
+                print(error_message)
+                return HttpResponseRedirect('doctorsignin')
+            else:
+            # User does not exist or email/password combination is incorrect
+            # Set a custom error message
+                error_message = 'Username doesn"t exists.'
+                messages.info(request, error_message)
+                return HttpResponseRedirect('doctorsignin')
+            # messages.error(request, error_message)
+            # return render(request, 'login/signin.html')
+
+    # Render the login page for GET requests
+    return render(request, 'doctorlogin/signin.html')
+
+
+
+
+
+def docregister(request):
+    if request.method == 'POST':
+        # Get form data
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        
+        phonenumber = request.POST.get("phonenumber")
+        password = request.POST.get('password')
+        request.session['username'] = username
+        request.session['email'] = email
+        request.session['phonenumber'] = phonenumber
+        request.session['password'] = password
+        # Check if username already exists
+        if DoctorRegister.objects.filter(username=username).exists():
+            error_messages = 'Username already exists.'
+            messages.info(request, error_messages)
+            return HttpResponseRedirect('login')
+        
+        else:
+            return HttpResponseRedirect('otp')
+        
+
+        # return render(request, 'otp.html')
+
+    # Render registration form template for GET request
+    return render(request, 'doctorlogin/signup.html')

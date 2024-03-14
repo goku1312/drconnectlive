@@ -31,5 +31,9 @@ urlpatterns = [
     path("plans1",views.plans1),
     path("doctor",views.doctor),
     path("doctorprofile",views.doctorprofile),
+    path("doctorlogin",views.doctorlogin),
+      path("doctorsignin",views.doctorsignin),
+      path("doctor_login",views.doctor_login),
+      path("docregister",views.docregister),
     
 ]
