@@ -735,8 +735,8 @@
                                     <i class="fas fa-camera-retro"></i>
                                  </button>
                               </div>
-                              <h2 class="vd_mane">Vicent George</h2>
-                              <span class="vd_mail"><a href="#!">vicentgeorg@gmail.com</a></span>
+                              <h2 class="vd_mane">{{doctor_details.username}}</h2>
+                              <span class="vd_mail"><a href="#!">{{doctor_details.email}}</a></span>
                               <ul class="vd_meta ul_li_center">
                                  <li><span>750</span> Followers</li>
                                  <li><span>10</span> Review</li>
@@ -752,8 +752,14 @@
                               </button>
                            </li> -->
                            <li>
-                              <button class="active" data-bs-toggle="tab" data-bs-target="#tab_products" type="button" role="tab"
+                              <button data-bs-toggle="tab" class="active" data-bs-target="#tab_profile" type="button" role="tab"
                                  aria-selected="true">
+                                 Profile
+                              </button>
+                           </li>
+                           <li>
+                              <button  data-bs-toggle="tab" data-bs-target="#tab_products" type="button" role="tab"
+                                 aria-selected="false">
                                  Patients
                               </button>
                            </li>
@@ -763,12 +769,7 @@
                                  Orders
                               </button>
                            </li>
-                           <li>
-                              <button data-bs-toggle="tab" data-bs-target="#tab_profile" type="button" role="tab"
-                                 aria-selected="false">
-                                 Profile
-                              </button>
-                           </li>
+                    
                            <li>
                               <button data-bs-toggle="tab" data-bs-target="#tab_settings" type="button" role="tab"
                                  aria-selected="false">
@@ -776,7 +777,7 @@
                               </button>
                            </li>
                            <li>
-                              <a href="#">Logout</a>
+                              <a href="logout">Logout</a>
                            </li>
                         </ul>
 
@@ -792,7 +793,7 @@
                   <div class="col col-lg-9">
                      <div class="tab-content">
 
-                        <div class="tab-pane fade show active" id="tab_products" role="tabpanel">
+                        <div class="tab-pane fade " id="tab_products" role="tabpanel">
                            <div class="trending_products">
                               <div class="vd_title_wrap">
                                  <h3>Trending Products</h3>
@@ -1087,7 +1088,7 @@
                            </div>
                         </div>
 
-                        <div class="tab-pane fade" id="tab_profile" role="tabpanel">
+                        <div class="tab-pane fade show active" id="tab_profile" role="tabpanel">
                            <div class="profile_table">
                               <div class="vd_title_wrap">
                                  <h3>Profile</h3>
@@ -1099,47 +1100,50 @@
                                        <thead>
                                           <tr>
                                              <th>Profile</th>
-                                             <th>Edit</th>
+                                           <!-- Add an onclick event in your Edit th -->
+<th onclick="makeEditable(this)">Edit</th>
+
                                           </tr>
                                        </thead>
+                                       <form method="post" action="docprofsave">
+                                          {% csrf_token %}
                                        <tbody>
                                           <tr>
-                                             <td><span><strong>Company Name</strong></span></td>
-                                             <td><span>Fashion Store</span></td>
+                                             <td><span><strong>Name</strong></span></td>
+                                             <td><input type="text" name="name" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.username}}"></td>
+                                          </tr>
+                                          <!-- <tr>
+                                             <td><span><strong>Email Address</strong></span></td>
+                                            
+                                             <td><input type="email" name="email" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="Mark.Enderess@Mail.Com"></td>
+                                          </tr> -->
+                                          <tr>
+                                             <td><span><strong>Contact</strong></span></td>
+                                            
+                                             <td><input type="text" name="contact" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.phonenumber}}"></td>
+                                          </tr>
+                                         
+                                          <tr>
+                                             <td><span><strong>Total Experience</strong></span></td>
+                  
+                                             <td><input type="text" name="exp" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.exp}}"></td>
                                           </tr>
                                           <tr>
-                                             <td><span><strong>Email Address</strong></span></td>
-                                             <td><span>Mark.Enderess@Mail.Com</span></td>
+                                             <td><span><strong>Specialization</strong></span></td>
+                                             
+                                             <td><input type="text" name="spec" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.spec}}"></td>
                                           </tr>
                                           <tr>
                                              <td><span><strong>Country/Region</strong></span></td>
-                                             <td><span>Downers Grove, IL</span></td>
+                                
+                                             <td><input type="text" name="cntry" class="form-control" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.cntry}}"></td>
                                           </tr>
-                                          <tr>
-                                             <td><span><strong>Year Established</strong></span></td>
-                                             <td><span>2018</span></td>
-                                          </tr>
-                                          <tr>
-                                             <td><span><strong>Total Experience</strong></span></td>
-                                             <td><span>101 - 200 People</span></td>
-                                          </tr>
-                                          <tr>
-                                             <td><span><strong>Category</strong></span></td>
-                                             <td><span>Clothing</span></td>
-                                          </tr>
-                                          <tr>
-                                             <td><span><strong>Street Address</strong></span></td>
-                                             <td><span>549 Sulphur Springs Road</span></td>
-                                          </tr>
-                                          <tr>
-                                             <td><span><strong>City/State</strong></span></td>
-                                             <td><span>Downers Grove, IL</span></td>
-                                          </tr>
-                                          <tr>
-                                             <td><span><strong>Zip</strong></span></td>
-                                             <td><span>60515</span></td>
-                                          </tr>
+                                       
+                                          <button type="submit" class="btn custom_btn" style="display: none;">Save</button>
                                        </tbody>
+                                      
+                                      
+                                    </form>
                                     </table>
                                  </div>
                               </div>
@@ -1498,6 +1502,27 @@
    <!-- Include custom js -->
    <script src="static/assets
 /js/custom.js"></script>
+
+
+
+<script>
+   function makeEditable(element) {
+       let currentRow = element.closest('tr');
+       let cellsToEdit = currentRow.querySelectorAll('td span'); // assuming first cell doesn't need to be editable
+   
+       cellsToEdit.forEach(function(span) {
+           // Check if we're currently showing an input (editing mode)
+           if (span.querySelector('input')) {
+               let input = span.querySelector('input');
+               span.textContent = input.value; // replace span content with input value
+           } else {
+               let textContent = span.textContent;
+               span.innerHTML = `<input type='text' value='${textContent}' />`;
+           }
+       });
+   }
+   </script>
+   
 
 </body>
 

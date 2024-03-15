@@ -1,271 +1,58 @@
-<li class="pe-2 position-relative">
-    <a href="#collapseExample" data-bs-toggle="collapse" href="#collapseExample"
-        role="button" aria-expanded="false" aria-controls="collapseExample"><i
-            class="far fa-user" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                    <!-- {% if request.session.is_logged_in %}
-                    <h4 class="user_name">{{uid}}</h4> -->
-                    <!-- {% else %} -->
-                    <h4 class="user_name">Guest</h4>
-                    <!-- {% endif %} -->
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-                <!-- {% if request.session.is_logged_in %}
-                <li><a href="vendorprofile"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-              
-                {% else %} -->
-                <li><a href="vendorprofile" class="disabled"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-                <!-- {% endif %} -->
-
-<!-- {% if request.session.is_logged_in %}
-
-<li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</li>
-{% else %} -->
-
-<li><a href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-</li>
-<!-- {% endif %} -->
-            </ul>
-        </div>
+<div class="tab-pane fade" id="tab_profile" role="tabpanel">
+    <div class="profile_table">
+       <div class="vd_title_wrap">
+          <h3>Profile</h3>
+         
+       </div>
+       <div class="vd_shadow p-0">
+          <div class="vd_table table-responsive">
+             <table class="table table-striped">
+                <thead>
+                   <tr>
+                      <th>Profile</th>
+                      <th>Edit</th>
+                   </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                      <td><span><strong>Company Name</strong></span></td>
+                      <td><span>Fashion Store</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Email Address</strong></span></td>
+                      <td><span>Mark.Enderess@Mail.Com</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Country/Region</strong></span></td>
+                      <td><span>Downers Grove, IL</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Year Established</strong></span></td>
+                      <td><span>2018</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Total Experience</strong></span></td>
+                      <td><span>101 - 200 People</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Category</strong></span></td>
+                      <td><span>Clothing</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Street Address</strong></span></td>
+                      <td><span>549 Sulphur Springs Road</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>City/State</strong></span></td>
+                      <td><span>Downers Grove, IL</span></td>
+                   </tr>
+                   <tr>
+                      <td><span><strong>Zip</strong></span></td>
+                      <td><span>60515</span></td>
+                   </tr>
+                </tbody>
+             </table>
+          </div>
+       </div>
     </div>
-</li>
-
-<li class="pe-2 position-relative">
-    <a href="#collapseExample1" data-bs-toggle="collapse" href="#collapseExample1"
-        role="button" aria-expanded="false" aria-controls="collapseExample1"><i
-            class="fa fa-user-md" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample1" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                    <!-- {% if request.session.is_logged_in %}
-                    <h4 class="user_name">{{uid}}</h4>
-                    {% else %} -->
-                    <h4 class="user_name">Guest</h4>
-                    <!-- {% endif %} -->
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-                <!-- {% if request.session.is_logged_in %}
-                <li><a href="doctorprofile"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-                
-                {% else %} -->
-                <li><a href="doctorprofile" class="disabled"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-                <!-- {% endif %} -->
-<!-- 
-{% if request.session.is_logged_in %}
-
-<li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</li>
-{% else %} -->
-
-<li><a href="doctorlogin"><i class="fas fa-sign-in-alt"></i> Login</a>
-</li>
-<!-- {% endif %} -->
-            </ul>
-        </div>
-    </div>
-</li>
-
-
-
-
-
-
-
- {% if request.session.is_logged_in %}
- <li class="pe-2 position-relative">
-    <a href="#collapseExample" data-bs-toggle="collapse" href="#collapseExample"
-        role="button" aria-expanded="false" aria-controls="collapseExample"><i
-            class="far fa-user" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                    
-                    <h4 class="user_name">{{uid}}</h4>
-                 
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-              
-                <li><a href="vendorprofile"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-              
-            
-<li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</li>
-
-
-
-            </ul>
-        </div>
-    </div>
-</li>
-
-
-
-
-{% if request.session.is_doclogged_in %}
-
-
-<li class="pe-2 position-relative">
-    <a href="#collapseExample1" data-bs-toggle="collapse" href="#collapseExample1"
-        role="button" aria-expanded="false" aria-controls="collapseExample1"><i
-            class="fa fa-user-md" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample1" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                
-                    <h4 class="user_name">{{uid}}</h4>
-                  
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-                
-                <li><a href="doctorprofile"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-              
-
-<li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</li>
-
-            </ul>
-        </div>
-    </div>
-</li>
-
-
-
-
-{% else %}
-
-<li class="pe-2 position-relative">
-    <a href="#collapseExample" data-bs-toggle="collapse" href="#collapseExample"
-        role="button" aria-expanded="false" aria-controls="collapseExample"><i
-            class="far fa-user" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                 
-                    <h4 class="user_name">Guest</h4>
-              
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-        
-                <li><a href="vendorprofile" class="disabled"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-          
-
-
-
-<li><a href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
-</li>
-
-            </ul>
-        </div>
-    </div>
-</li>
-
-<li class="pe-2 position-relative">
-    <a href="#collapseExample1" data-bs-toggle="collapse" href="#collapseExample1"
-        role="button" aria-expanded="false" aria-controls="collapseExample1"><i
-            class="fa fa-user-md" data-toggle="collapse" role="button"
-            data-target="#use_deropdown" aria-expanded="false"
-            aria-controls="use_deropdown"></i>
-    </a>
-
-    <!-- user profile start -->
-    <div id="collapseExample1" class="collapse_dropdown collapse">
-        <div class="dropdown_content">
-            <div class="profile_info clearfix">
-                <div class="user_thumbnail">
-                    <img src="static/assets/images/meta/meta1.png"
-                        alt="image_not_found">
-                </div>
-                <div class="user_content">
-                  
-                    <h4 class="user_name">Guest</h4>
-                   
-                    <span class="user_title">Seller</span>
-                </div>
-            </div>
-            <ul class="settings_options ul_li_block clearfix">
-          
-                <li><a href="doctorprofile" class="disabled"><i class="fas fa-user-circle"></i> Profile</a>
-                </li>
-
-
-<li><a href="doctorlogin"><i class="fas fa-sign-in-alt"></i> Login</a>
-</li>
-
-            </ul>
-        </div>
-    </div>
-</li>
-
-
-
-{% endif %}
+ </div>

@@ -8,7 +8,7 @@ from django.conf import settings
 from django.utils.crypto import get_random_string
 from gtts import gTTS
 
-
+from django.shortcuts import render, get_object_or_404
 
 
 
@@ -310,7 +310,11 @@ def doctor(request):
 
 
 def doctorprofile(request):
-    return render(request,"doctorprofile.html")
+    if 'email' in request.session:
+        email = request.session['email']
+        doctor_details = DoctorRegister.objects.filter(email=email).first()  # Retrieve the first record matching the email
+        return render(request, "doctorprofile.html", {"doctor_details": doctor_details})
+  
 
 
 
@@ -465,3 +469,39 @@ def verifyotp1(request):
             return HttpResponseRedirect('index')
         else:
             messages.error(request, 'Invalid OTP')
+
+
+
+
+def docprofsave(request):
+    if request.method == 'POST':
+        # Retrieve form data
+        uid=request.session['username']
+        name = request.POST.get('name')
+        contact = request.POST.get('contact')
+        exp = request.POST.get('exp')
+        spec = request.POST.get('spec')
+        cntry = request.POST.get('cntry')
+        email = request.session['email']  # Assuming the user's email is used as the lookup value
+        
+        # Retrieve existing record based on user's email
+        doc_register = get_object_or_404(DoctorRegister, email=email)
+        
+        # Compare with existing data and update only if changed
+        if doc_register.username != name:
+            doc_register.username = name
+        if doc_register.phonenumber != contact:
+            doc_register.phonenumber = contact
+        if doc_register.exp != exp:
+            doc_register.exp = exp
+        if doc_register.spec != spec:
+            doc_register.spec = spec
+        if doc_register.cntry != cntry:
+            doc_register.cntry = cntry
+
+        # Save the changes
+        doc_register.save()
+        
+        return HttpResponseRedirect('doctorprofile')  # Redirect to success page or wherever you want
+    else:
+        return HttpResponseRedirect('doctorprofile')

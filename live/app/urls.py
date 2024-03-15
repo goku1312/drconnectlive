@@ -37,5 +37,6 @@ urlpatterns = [
       path("docregister",views.docregister),
       path('otp1',views.otp1),
       path('verifyotp1',views.verifyotp1),
+      path("docprofsave",views.docprofsave),
     
 ]
