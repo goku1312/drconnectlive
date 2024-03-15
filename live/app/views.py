@@ -200,6 +200,7 @@ def user_login(request):
 
 def logout(request):
     request.session['is_logged_in']=False
+    request.session['is_doclogged_in']=False
     return HttpResponseRedirect('index')
 
 
@@ -340,11 +341,14 @@ def doctor_login(request):
         if user:
             print("12",user.username)
             # User exists, set session flag and redirect to the home page or any other desired URL
-            request.session['is_logged_in'] = True
+            request.session['is_doclogged_in'] = True
             request.session['email'] = email
             request.session['username'] =user.username
+            uid=request.session['username']
+            
             request.session.save()
-            return HttpResponseRedirect('index')
+            return render(request,"index-2.html",{"uid":uid})
+            # return HttpResponseRedirect('index')
         else:
             print("123",user)
             # User exists, set session flag and redirect to the home page or any other desired URL
@@ -386,13 +390,78 @@ def docregister(request):
         if DoctorRegister.objects.filter(username=username).exists():
             error_messages = 'Username already exists.'
             messages.info(request, error_messages)
-            return HttpResponseRedirect('login')
+            return HttpResponseRedirect('doctorlogin')
         
         else:
-            return HttpResponseRedirect('otp')
+            return HttpResponseRedirect('otp1')
         
 
         # return render(request, 'otp.html')
 
     # Render registration form template for GET request
     return render(request, 'doctorlogin/signup.html')
+
+
+
+def otp1(request):
+
+        username=request.session['username']
+        email=request.session['email']
+        phonenumber=request.session['phonenumber']
+        password=request.session['password']
+        message = get_random_string(length=4, allowed_chars='0123456789')
+        request.session['message'] = message
+
+        # Assuming you have a default email address set in your Django settings
+        recipient_email = settings.DEFAULT_FROM_EMAIL
+      
+        print(email)
+       
+        # Send email
+        send_mail(
+    'OTP Verification',
+    f'Hi {username},\n\n'
+    f'Thank you for registering on our website! Your One-Time Password (OTP) for verification is: {message}\n\n'
+    f'If you didn\'t register on our website, please ignore this email.\n\n'
+    f'Regards,\n'
+    f'Your Website Team',
+    settings.DEFAULT_FROM_EMAIL,
+    [email],
+    fail_silently=False,
+)
+        
+        # Return a success response
+        messages.success(request,
+                         'Successfully registered! An email has been sent to your email address for verification.')
+        return render(request,"otp1.html" ,{"email" : email})
+
+
+
+
+
+
+
+def verifyotp1(request):
+
+    if request.method == 'POST':
+        # Get values from the input fields
+        otp1 = request.POST.get('otp1', '')
+        otp2 = request.POST.get('otp2', '')
+        otp3 = request.POST.get('otp3', '')
+        otp4 = request.POST.get('otp4', '')
+        username=request.session['username']
+        email=request.session['email']
+        phonenumber=request.session['phonenumber']
+        password=request.session['password']
+
+        # Combine the values into one string
+        combined_otp = otp1 + otp2 + otp3 + otp4
+        message=request.session['message']
+
+        if int(combined_otp) == int(message):
+            user = DoctorRegister.objects.create(username=username, email=email,phonenumber=phonenumber ,password=password).save()
+            request.session['is_doclogged_in']=True
+            
+            return HttpResponseRedirect('index')
+        else:
+            messages.error(request, 'Invalid OTP')

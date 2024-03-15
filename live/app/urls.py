@@ -35,5 +35,7 @@ urlpatterns = [
       path("doctorsignin",views.doctorsignin),
       path("doctor_login",views.doctor_login),
       path("docregister",views.docregister),
+      path('otp1',views.otp1),
+      path('verifyotp1',views.verifyotp1),
     
 ]
