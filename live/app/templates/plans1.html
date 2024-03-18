@@ -10,24 +10,14 @@
 <title>Pricing component</title>
 
 <style>
-  /* * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-size: 15px;
-} */
-body {
+
+.plans {
   background: #f7f7ff;
   font-family: "Montserrat", sans-serif;
   width: 100%;
-  /* max-width: 1440px; */
+
   margin: 0 auto;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* overflow-x: hidden; */
+
 }
 header {
   color: hsl(233, 13%, 49%);
@@ -37,13 +27,13 @@ header {
   justify-content: center;
   align-items: center;
 }
-.toggle {
+.togggle {
   margin-top: 2rem;
   color: hsl(234, 14%, 74%);
   display: flex;
   align-items: center;
 }
-.toggle-btn {
+.togggle-btn {
   margin: 0 1rem;
 }
 .checkbox {
@@ -59,8 +49,7 @@ header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* height: 25px;
-  width: 50px; */
+
   height: 1.6rem;
   width: 3.3rem;
   border-radius: 1.6rem;
@@ -76,21 +65,21 @@ header {
   justify-content: flex-end;
 }
 
-.cards {
+.carddss{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.card {
+.cardd {
   
   background: #fff;
   color: hsl(233, 13%, 49%);
   border-radius: 0.8rem;
 }
 
-.cards .card.active {
+.carddss.cardd.active {
   background: linear-gradient(
     135deg,
     #81c408 0%,
@@ -125,7 +114,7 @@ ul li.price {
   box-shadow: -5px 5px 15px 1px rgba(0, 0, 0, 0.1);
 }
 
-.card.active .price {
+.cardd.active .price {
   color: #fff;
 }
 
@@ -154,7 +143,7 @@ ul li.price {
 .bottom-bar {
   border-bottom: 2px solid hsla(240, 8%, 85%, 0.582);
 }
-.card.active .bottom-bar {
+.cardd.active .bottom-bar {
   border-bottom: 2px solid hsla(240, 8%, 85%, 0.253);
 }
 .pack {
@@ -168,24 +157,24 @@ ul li.price {
   h1 {
     font-size: 1.2rem;
   }
-  .toggle {
+  .togggle {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     height: 80px;
   }
-  .cards {
+  .carddss{
     margin: 0;
     display: flex;
     flex-direction: column;
   }
 
-  .card {
+  .cardd {
     transform: scale(0.8);
     margin-bottom: 1rem;
   }
-  .cards .card.active {
+  .carddss.cardd.active {
     transform: scale(0.8);
   }
 }
@@ -194,48 +183,48 @@ ul li.price {
   ul {
     margin: 20px;
   }
-  .cards {
+  .carddss{
     display: flex;
     flex-direction: column;
   }
-  .card {
+  .cardd {
     margin-bottom: 1rem;
   }
-  .cards .card.active {
+  .carddss.cardd.active {
     transform: scale(1);
   }
 }
 
 @media (min-width: 320px) and (max-width: 414px) {
-  .cards {
+  .carddss{
     display: flex;
     flex-direction: column;
     
   }
-  .card {
+  .cardd {
     margin-bottom: 1rem;
   }
-  .cards .card.active {
+  .carddss.cardd.active {
     transform: scale(1);
   }
 }
 @media (min-width: 414px) and (max-width: 768px) {
-  .card {
+  .cardd {
     margin-bottom: 1rem;
     margin-right: 1rem;
   }
-  .cards .card.active {
+  .carddss.cardd.active {
     transform: scale(1);
    } 
  }
 @media (min-width: 768px) and (max-width: 1046px) {
-  .cards {
+  .carddss{
     display: flex;
     flex-direction: column;
 
     
   }
-  .card {
+  .cardd {
     height: 1450px;
     width: 90%;
     padding-top: 180px;
@@ -248,34 +237,34 @@ ul li.price {
 
 
   }
-  /* .cards.card .active:hover{
+  /* .cardds.cardd .active:hover{
     box-shadow: rgb(12, 12, 152)  2px 1px 2px 3px;
     font-size: 10px;
   } */
-  .card ul li.pack{
+  .cardd ul li.pack{
     font-size: 73px;
     
 
   }
-  .card ul li.price{
+  .cardd ul li.price{
     font-size: 143px;
     
 
   }
 
-  .card ul li.bottom-bar{
+  .cardd ul li.bottom-bar{
     font-size: 63px;
     
 
   }
 
   
-  .cards .card {
+  .carddss.cardd {
     transform: scale(1);
     
   }
 
-  .cards .card:hover {
+  .carddss.card:hover {
    
     transform: scale(1.1);
     margin-top: 40px;
@@ -295,7 +284,7 @@ ul li.price {
   }
 } 
 
-.cards .card:hover {
+.cardd:hover {
    
    transform: scale(1.1);
    /* margin-top: 40px; */
@@ -319,12 +308,12 @@ ul li.price {
 </style>
 </head>
 
-<body>
-  <header>
+<div class="plans">
+  <header class="h">
     <h1>Our Pricing</h1>
-    <div class="toggle">
+    <div class="toggle togggle">
       <label>Annually </label>
-      <div class="toggle-btn">
+      <div class="toggle togggle-btn">
         <input type="checkbox" class="checkbox" id="checkbox" />
         <label class="sub" id="sub" for="checkbox">
           <div class="circle"></div>
@@ -333,8 +322,8 @@ ul li.price {
       <label> Monthly</label>
     </div>
   </header>
-  <div class="cards col">
-    <div class="card shadow">
+  <div class="card-col carddss ">
+    <div class="card cardd shadow">
       <ul>
         <li class="pack">Basic</li>
         <li id="basic" class="price bottom-bar1">&dollar;199.99</li>
@@ -344,7 +333,7 @@ ul li.price {
         <li><button class="btn">Learn More</button></li>
       </ul>
     </div>
-    <div class="card ">
+    <div class="card cardd ">
       <ul>
         <li class="pack">Professional</li>
         <li id="professional" class="price bottom-bar1">&dollar;249.99</li>
@@ -354,7 +343,7 @@ ul li.price {
         <li><button class="btn ">Learn More</button></li>
       </ul>
     </div>
-    <div class="card shadow">
+    <div class="card-shadow cardd ">
       <ul>
         <li class="pack">Master</li>
         <li id="master" class="price bottom-bar1">&dollar;399.99</li>
@@ -365,6 +354,10 @@ ul li.price {
       </ul>
     </div>
   </div>
+</div>
+
+
+
   <script> 
   const checkbox = document.getElementById("checkbox");
 const professional = document.getElementById("professional");
