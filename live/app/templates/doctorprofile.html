@@ -728,13 +728,16 @@
                            <div class="vd_info_wrap text-center">
                               <div class="vd_image">
                                  <div class="image_wrap">
-                                    <img src="static/assets
-/images/meta/meta1.png" alt="image_not_found">
+                                     <img src="static/assets/images/meta/meta1.png" alt="image_not_found" id="imagePreview">
                                  </div>
-                                 <button type="button" class="edit_btn">
-                                    <i class="fas fa-camera-retro"></i>
+                                 <button type="button" class="edit_btn" onclick="triggerUpload()">
+                                     <i class="fas fa-camera-retro"></i> 
+                                 <button type="button" class="remove_btn" onclick="removeImage()">
+                                     <i class="fas fa-times"></i> Remove
                                  </button>
-                              </div>
+                                 <!-- Hidden file input -->
+                                 <input type="file" id="fileInput" style="display: none;">
+                             </div>
                               <h2 class="vd_mane">{{doctor_details.username}}</h2>
                               <span class="vd_mail"><a href="#!">{{doctor_details.email}}</a></span>
                               <ul class="vd_meta ul_li_center">
@@ -745,12 +748,7 @@
                         </div>
 
                         <ul class="vd_tab_nav nav ul_li_block" role="tablist">
-                           <!-- <li>
-                              <button class="active" data-bs-toggle="tab" data-bs-target="#tab_dashboard" type="button"
-                                 role="tab" aria-selected="true">
-                                 Dashboard
-                              </button>
-                           </li> -->
+                     
                            <li>
                               <button data-bs-toggle="tab" class="active" data-bs-target="#tab_profile" type="button" role="tab"
                                  aria-selected="true">
@@ -1523,6 +1521,56 @@
    }
    </script>
    
+
+
+
+
+   // Trigger image field
+
+
+
+   <script>
+      function triggerUpload() {
+          // Trigger click event on the hidden file input
+          document.getElementById('fileInput').click();
+      }
+  
+      document.getElementById('fileInput').addEventListener('change', function(event) {
+          var file = event.target.files[0];
+          if (file) {
+              var reader = new FileReader();
+              reader.onload = function(e) {
+                  var imagePreview = document.getElementById('imagePreview');
+                  imagePreview.src = e.target.result;
+              };
+              reader.readAsDataURL(file);
+          }
+      });
+  
+      function removeImage() {
+          // Reset the image source to the default or placeholder image
+          var defaultImage = "static/assets/images/meta/meta1.png";
+          document.getElementById('imagePreview').src = defaultImage;
+          // Clear the file input to remove the selected image
+          document.getElementById('fileInput').value = "";
+      }
+  </script>
+  <script>
+   document.getElementById('fileInput').addEventListener('change', function(event) {
+       var file = event.target.files[0];
+       // You can perform actions with the selected file, such as displaying a preview or uploading it
+       if (file) {
+           var reader = new FileReader();
+           reader.onload = function(e) {
+               // Display the selected image preview
+               var imagePreview = document.querySelector('.image_wrap img');
+               imagePreview.src = e.target.result;
+           };
+           reader.readAsDataURL(file);
+       }
+   });
+</script>
+
 
 </body>
 
