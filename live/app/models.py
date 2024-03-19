@@ -21,6 +21,7 @@ class DoctorRegister(models.Model):
     spec=models.CharField(max_length=100)
     cntry=models.CharField(max_length=100)
     password = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='docimage', null=True, blank=True)
     is_active = models.BooleanField(default=False)
     # verification_code = models.CharField(max_length=100, blank=True, null=True)
     last_login=models.DateTimeField(null=True,blank=True)

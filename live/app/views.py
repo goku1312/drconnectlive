@@ -313,7 +313,10 @@ def doctor(request):
 def doctorprofile(request):
     if 'email' in request.session:
         email = request.session['email']
-        doctor_details = DoctorRegister.objects.filter(email=email).first()  # Retrieve the first record matching the email
+        doctor_details = DoctorRegister.objects.filter(email=email).first() 
+        print('jhjjkhhjghkhkjhkjhkjhkjhkjhjkhjkhjkhjkhjkhjkhjkhujkjhkjhjhkjhjkhjkhj')
+        print(doctor_details.image)
+         # Retrieve the first record matching the email
         return render(request, "doctorprofile.html", {"doctor_details": doctor_details})
   
 
@@ -579,3 +582,30 @@ def numbverify_otp(request):
     
     else:
         return render(request, 'verify_otp.html')
+    
+
+
+
+from django.http import JsonResponse
+
+def upload_image(request):
+    if request.method == 'POST' and request.FILES.get('image'):
+        image = request.FILES['image']
+        doctor = DoctorRegister(image=image)
+        doctor.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'})
+
+def delete_image(request):
+    if request.method == 'POST':
+        # Assuming you receive the ID of the image to delete in the request
+        image_id = request.POST.get('image_id')
+        if image_id:
+            # Retrieve the DoctorRegister object by its ID
+            doctor = get_object_or_404(DoctorRegister, pk=image_id)
+            # Delete the image file from the server (optional, if you want to delete the file physically)
+            doctor.image.delete(save=False)  # Assuming 'image' is the field name
+            # Delete the DoctorRegister object
+            doctor.delete()
+            return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'})

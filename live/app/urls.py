@@ -1,7 +1,8 @@
-
+from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import path
 from app import views
-
+from django.conf import settings
 urlpatterns = [
    
     path('',views.index),
@@ -40,5 +41,14 @@ urlpatterns = [
       path("docprofsave",views.docprofsave),
       path('numb_otp',views.numb_otp),
       path("numbverify_otp",views.numbverify_otp),
+         path('upload_image',views.upload_image),
+    path('delete_image',views.delete_image),
     
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
