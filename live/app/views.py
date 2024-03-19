@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils.crypto import get_random_string
 from gtts import gTTS
 from twilio.rest import Client
+from twilio.base.exceptions import TwilioRestException
 from django.shortcuts import render, get_object_or_404
 
 
@@ -512,46 +513,69 @@ def docprofsave(request):
 
 
 
-    
-
 def numb_otp(request):
     if request.method == 'POST':
-        account_sid = "ACc066745b21b04e8212cf13d251537d69"
-        auth_token = "887f15a8342f53c798e6462a06bcfb4c"
-        verify_sid = "VAf4325c86b54cb521f1d2bcbe1cbd3e21"
-        verified_number = "+917907334688"
+        try:
+            # Twilio Account SID, Auth Token, and Verify Service SID
+            account_sid = "ACc066745b21b04e8212cf13d251537d69"
+            auth_token = "8e284fc876454098f9773620902dfdaa"
+            verify_sid = "VAf4325c86b54cb521f1d2bcbe1cbd3e21"
+            
+            # Phone number to send OTP to (in E.164 format)
+            verified_number = "+917907334688"
+            
+            # Initialize Twilio client
+            client = Client(account_sid, auth_token)
+            
+            # Send OTP via SMS
+            verification = client.verify.services(verify_sid) \
+                .verifications \
+                .create(to=verified_number, channel="sms")
+            
+            # Log verification status
+            print(verification.status)
+            
+            return HttpResponse("OTP sent successfully!")
         
-        client = Client(account_sid, auth_token)
-        
-        verification = client.verify.v2.services(verify_sid) \
-            .verifications \
-            .create(to=verified_number, channel="sms")
-        print(verification.status)
-        
-        return HttpResponse("OTP sent successfully!")
+        except TwilioRestException as e:
+            # Log the Twilio error and return failure response
+            print(e)
+            return HttpResponse("Failed to send OTP. Please try again later.")
+    
     else:
         return render(request, 'numb_otp.html')
-    
-
-
-
-
 
 def numbverify_otp(request):
     if request.method == 'POST':
-        otp_code = request.POST.get('otp_code')
-        account_sid = "ACc066745b21b04e8212cf13d251537d69"
-        auth_token = "887f15a8342f53c798e6462a06bcfb4c"
-        verify_sid = "VAf4325c86b54cb521f1d2bcbe1cbd3e21"
-        verified_number = "+917907334688"
+        try:
+            # Twilio Account SID, Auth Token, and Verify Service SID
+            account_sid = "ACc066745b21b04e8212cf13d251537d69"
+            auth_token = "887f15a8342f53c798e6462a06bcfb4c"
+            verify_sid = "VAf4325c86b54cb521f1d2bcbe1cbd3e21"
+            
+            # Phone number to verify OTP against (in E.164 format)
+            verified_number = "+917907334688"
+            
+            # Get OTP code from the request
+            otp_code = request.POST.get('otp_code')
+            
+            # Initialize Twilio client
+            client = Client(account_sid, auth_token)
+            
+            # Verify OTP code
+            verification_check = client.verify.services(verify_sid) \
+                .verification_checks \
+                .create(to=verified_number, code=otp_code)
+            
+            # Log verification status
+            print(verification_check.status)
+            
+            return HttpResponse("OTP verified successfully!")
         
-        client = Client(account_sid, auth_token)
-        
-        verification_check = client.verify.v2.services(verify_sid) \
-            .verification_checks \
-            .create(to=verified_number, code=otp_code)
-        print(verification_check.status)
-        
-        return HttpResponse("OTP verified successfully!")
+        except TwilioRestException as e:
+            # Log the Twilio error and return failure response
+            print(e)
+            return HttpResponse("Failed to verify OTP. Please enter a valid OTP.")
+    
     else:
-        return render(request, 'numbverify_otp.html')
+        return render(request, 'verify_otp.html')
