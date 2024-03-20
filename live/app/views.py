@@ -601,9 +601,9 @@ def upload_image(request):
         # doctor = DoctorRegister(image=image)
         # doctor.save()
         
-        print(image)
-        print('jkkkkkkkkkkk')
-        return JsonResponse({'status': 'success','image':doc_register.image})
+     
+        return JsonResponse({'status': 'success'})
+     
         
     return JsonResponse({'status': 'error'})
 
