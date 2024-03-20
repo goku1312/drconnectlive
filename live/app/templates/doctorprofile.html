@@ -497,7 +497,7 @@
                                      <i class="fas fa-camera-retro"></i>
                                  </button>
                                  <div id="options" style="display: none;">
-                                     <button type="button" class="upload_btn" onclick="triggerUpload()" style="color: green;">Upload</button><hr>
+                                     <button type="submit" class="upload_btn" onclick="triggerUpload()" style="color: green;">Upload</button><hr>
                                      <button type="button" class="remove_btn" onclick="removeImage()" style="color:red;">Remove</button>
                                  </div>
                                  <input type="file" id="fileInput" style="display: none;">
@@ -1324,13 +1324,14 @@
               formData.append('image', file);
               // Send an AJAX request to upload the image
               $.ajax({
-                  url: '/upload_image/',  // URL to your Django view for uploading the image
+                  url: 'upload_image',  // URL to your Django view for uploading the image
                   type: 'POST',
                   data: formData,
                   processData: false,
                   contentType: false,
                   headers: {'X-CSRFToken': csrfToken}, // Include CSRF token
                   success: function(response) {
+                     document.getElementById('imagePreview').src='live/media/docimage/Screenshot_from_2024-03-18_16-20-10_a6FhkMK.png';
                       // Handle success if needed
                   },
                   error: function(error) {

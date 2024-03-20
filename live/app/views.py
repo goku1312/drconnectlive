@@ -591,9 +591,20 @@ from django.http import JsonResponse
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         image = request.FILES['image']
-        doctor = DoctorRegister(image=image)
-        doctor.save()
-        return JsonResponse({'status': 'success'})
+        email = request.session['email']  # Assuming the user's email is used as the lookup value
+        
+        # Retrieve existing record based on user's email
+        doc_register = get_object_or_404(DoctorRegister, email=email)
+        if doc_register.image != image:
+            doc_register.image = image
+            doc_register.save()
+        # doctor = DoctorRegister(image=image)
+        # doctor.save()
+        
+        print(image)
+        print('jkkkkkkkkkkk')
+        return JsonResponse({'status': 'success','image':doc_register.image})
+        
     return JsonResponse({'status': 'error'})
 
 def delete_image(request):
