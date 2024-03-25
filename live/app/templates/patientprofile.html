@@ -114,7 +114,7 @@
                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav main_menu_list m-auto after_navbar">
                            <li class="nav-item nav_item_has_child px-2 dropdown">
-                              <a class="nav-link active" aria-current="page" href="doctorprofile"
+                              <a class="nav-link active" aria-current="page" href="index"
  id="home_submenu" role="button"
                           >Home</a>
                            
@@ -158,7 +158,7 @@
                               <li class="pe-2 position-relative">
                                  <a href="#collapseExample1" data-bs-toggle="collapse" href="#collapseExample1"
                                      role="button" aria-expanded="false" aria-controls="collapseExample1"><i
-                                         class="fa fa-user-md" data-toggle="collapse" role="button"
+                                     class="far fa-user" data-toggle="collapse" role="button"
                                          data-target="#use_deropdown" aria-expanded="false"
                                          aria-controls="use_deropdown"></i>
                                  </a>
@@ -175,15 +175,14 @@
                                              
                                                  <h4 class="user_name">{{doctor_details.username}}</h4>
                                                
-                                                 <span class="user_title">{{doctor_details.spec}}</span>
+                                             
                                              </div>
                                          </div>
                                          <ul class="settings_options ul_li_block clearfix">
                                              
-                                             <!-- <li><a href="doctorprofile"><i class="fas fa-user-circle"></i> Profile</a>
+                                             <li><a href="patientprofile"><i class="fas fa-user-circle"></i> Profile</a>
                                              </li>
-                                            -->
-                             
+                               
                              <li><a href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                              </li>
                              
@@ -467,12 +466,12 @@
                style="background-image: url(static/assets/images/breadcrumb/breadcrumb1.png);">
                <div class="breadcrumb_cont text-center">
                   <div class="breadcrumb_title">
-                     <h2 class="text-white text">Doctor</h2>
+                     <h2 class="text-white text">Patient</h2>
                   </div>
                   <ul class="list-unstyled breadcrumb_item d-flex justify-content-center align-items-center text-white">
                      <li><a href="index
 "><i class="fas fa-home active"></i>Home</a></li>
-                     <li><i class="fas fa-chevron-right"></i>Profile</li>
+                     <li><i class="fas fa-chevron-right"></i>Patient Profile</li>
                   </ul>
                </div>
             </div>
@@ -508,10 +507,7 @@
                              </div>
                               <h2 class="vd_mane">{{doctor_details.username}}</h2>
                               <span class="vd_mail"><a href="#!">{{doctor_details.email}}</a></span>
-                              <ul class="vd_meta ul_li_center">
-                                 <li><span>750</span> Followers</li>
-                                 <li><span>10</span> Review</li>
-                              </ul>
+                         
                            </div>
                         </div>
 
@@ -526,7 +522,7 @@
                            <li>
                               <button  data-bs-toggle="tab" data-bs-target="#tab_products" type="button" role="tab"
                                  aria-selected="false">
-                                 Patients
+                                 Doctors
                               </button>
                            </li>
                            <li>
@@ -556,50 +552,50 @@
                         </div>
                      </div>
                   </div>
-
-
-
                   <div class="col col-lg-9">
                      <div class="tab-content">
 
                         <div class="tab-pane fade " id="tab_products" role="tabpanel">
                            <div class="trending_products">
                               <div class="vd_title_wrap">
-                                 <h3>Patients</h3>
-                    
+                                 <h3>Trending Products</h3>
+                                 <button type="button" class="btn custom_btn"><i class="far fa-plus"></i> Add
+                                    Product</button>
                               </div>
                               <div class="vd_shadow p-0">
                                  <div class="vd_table table-responsive">
                                     <table class="table table-striped">
                                        <thead>
                                           <tr>
-                                             <th>Image</th>
-                                             <th>Patient Name</th>
-                                            
-                                             <th>Date</th>
-                                             <th>Prescription </th>
-                                            
+                                             <th>Product Image</th>
+                                             <th>Product Name</th>
+                                             <th>Category</th>
+                                             <th>Price</th>
+                                             <th>Stock</th>
+                                             <th>Sales</th>
                                              <th>Edit/Delete</th>
                                           </tr>
                                        </thead>
                                        <tbody>
-                                          {% for i in patient_details %}
-
-
                                           <tr>
                                              <td>
                                                 <div class="item_image">
-                                                   <img src="{{ i.image.url }}" alt="image_not_found">
+                                                   <img src="static/assets
+/images/cart/cart1.png" alt="image_not_found">
                                                 </div>
                                              </td>
                                              <td>
-                                                <h4 class="item_title"><a href="shop-list.html"></a>{{i.username}}
+                                                <h4 class="item_title"><a href="shop-list.html"></a>Neck Velvet Dress
                                                 </h4>
                                              </td>
-                                       
+                                             <td>
+                                                <ul class="category_list ul_li">
+                                                   <li><a href="#!">Women Clothes</a></li>
+                                                </ul>
+                                             </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -615,8 +611,7 @@
                                                 </ul>
                                              </td>
                                           </tr>
-                                          {% endfor %}
-                                          <!-- <tr>
+                                          <tr>
                                              <td>
                                                 <div class="item_image">
                                                    <img src="static/assets
@@ -634,7 +629,7 @@
                                              </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -668,7 +663,7 @@
                                              </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -702,7 +697,7 @@
                                              </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -736,7 +731,7 @@
                                              </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -770,7 +765,7 @@
                                              </td>
                                              <td><span>$205</span></td>
                                              <td><span>1000</span></td>
-                                         
+                                             <td><span>2000</span></td>
                                              <td>
                                                 <ul class="btns_group ul_li">
                                                    <li>
@@ -785,7 +780,7 @@
                                                    </li>
                                                 </ul>
                                              </td>
-                                          </tr> -->
+                                          </tr>
                                        </tbody>
                                     </table>
                                  </div>
@@ -867,39 +862,58 @@
                                        <thead>
                               
                                        </thead>
-                                       <form method="post" action="docprofsave" id="editForm">
+                                       <form method="post" action="patprofsave" id="editForm">
                                           {% csrf_token %}
                                           <tbody>
                                               <tr>
                                                   <td><span><strong>Name</strong></span></td>
                                                   <td><input type="text" name="name" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.username}}" readonly></td>
                                               </tr>
+                                              
                                               <tr>
                                                   <td><span><strong>Contact</strong></span></td>
                                                   <td><input type="text" name="contact" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.phonenumber}}" readonly></td>
                                               </tr>
                                               <tr>
-                                                  <td><span><strong>Total Experience</strong></span></td>
-                                                  <td><input type="text" name="exp" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.exp}}" readonly></td>
+                                                  <td><span><strong>Bystander</strong></span></td>
+                                                
+                                                  <td><input type="text" name="bystander" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.bystander}}" readonly></td>
+                                              
+                                                </tr>
+                                              <tr>
+                                                  <td><span><strong>Bystander Contact</strong></span></td>
+                                                  <td><input type="text" name="bystandercontact" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.bystandercontact}}" readonly></td>
                                               </tr>
                                               <tr>
-                                                  <td><span><strong>Specialization</strong></span></td>
-                                                  <td><input type="text" name="spec" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.spec}}" readonly></td>
+                                                  <td><span><strong>Height</strong></span></td>
+                                                  <td><input type="text" name="height" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.height}}" readonly></td>
                                               </tr>
                                               <tr>
-                                                  <td><span><strong>Country/Region</strong></span></td>
-                                                  <td><input type="text" name="cntry" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.cntry}}" readonly></td>
-                                              </tr>
-                                              <tr>
-                                                  <td><span><strong>Description</strong></span></td>
-                                                  <td>
-                                                      <textarea name="desc" class="form-control editable-field" style="border: none; background: transparent; color: rgb(100, 100, 100); height: 150px;" readonly>{{ doctor_details.desc }}</textarea>
-                                                  </td>
-                                              </tr>
+                                                <td><span><strong>Weight</strong></span></td>
+                                                <td><input type="text" name="weight" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.weight}}" readonly></td>
+                                            </tr>
+                                            <tr>
+                                             <td><span><strong>B.P</strong></span></td>
+                                             <td>
+                                                 <input type="text" name="bp" id="bp" class="form-control editable-field" style="border: none; background: transparent; color: rgb(100, 100, 100)" value="{{ doctor_details.bp }}" readonly>
+                                                 <span style="position:relative;left:350px;width:100px;" id="bp_timestamp"></span>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td><span><strong>Sugar</strong></span></td>
+                                             <td>
+                                                 <input type="text" name="sugar" id="sugar" class="form-control editable-field" style="border: none; background: transparent; color: rgb(100, 100, 100);" value="{{ doctor_details.sugar }}" readonly>
+                                                 <span style="position:relative;left:350px;width:100px;" id="sugar_timestamp"></span>
+                                             </td>
+                                         </tr>
+                                      <tr>
+                                       <td><span><strong>Country/Region</strong></span></td>
+                                       <td><input type="text" name="cntry" class="form-control editable-field" style="border: none; background: transparent;color:rgb(100, 100, 100)" value="{{doctor_details.cntry}}" readonly></td>
+                                   </tr>
+
                                               <tr>
                                                 <td></td>
-                                                <td> <button type="button" class="btn custom_btn" id="editButton">Update</button> 
-                                                   <button type="submit" class="btn custom_btn" style="display: none;" id="saveButton">Save</button></td>
+                                                <td> <button type="button" class="btn custom_btn" id="editButton">Update</button> <button type="submit" class="btn custom_btn" style="display: none;" id="saveButton">Save</button></td>
                                                   <!-- <td>
                                                    <div class="row">
                                                        <div class="col-6 col-sm-6 col-md-6 col-lg-3">
@@ -1024,12 +1038,6 @@
                         </div>
                      </div>
                   </div>
-
-
-
-
-
-
                </div>
             </div>
          </section>
@@ -1343,7 +1351,7 @@
               formData.append('image', file);
               // Send an AJAX request to upload the image
               $.ajax({
-                  url: 'upload_image',  // URL to your Django view for uploading the image
+                  url: 'paupload_image',  // URL to your Django view for uploading the image
                   type: 'POST',
                   data: formData,
                   processData: false,
@@ -1378,6 +1386,79 @@
              }
          });
      </script>
+     <script>
+      const bpInput = document.getElementById('bp');
+      const sugarInput = document.getElementById('sugar');
+      const bpTimestampSpan = document.getElementById('bp_timestamp');
+      const sugarTimestampSpan = document.getElementById('sugar_timestamp');
+  
+      function formatDateTime(date) {
+          let hours = date.getHours();
+          let minutes = date.getMinutes();
+          const ampm = hours >= 12 ? 'PM' : 'AM';
+          hours = hours % 12;
+          hours = hours ? hours : 12; // 12-hour clock, so 0 becomes 12
+          minutes = minutes < 10 ? '0' + minutes : minutes;
+          const month = date.getMonth() + 1;
+          const day = date.getDate();
+          const year = date.getFullYear();
+          return `${month}/${day}/${year} ${hours}:${minutes} ${ampm}`;
+      }
+  
+      function updateBPTimestamp() {
+          const currentTime = new Date();
+          bpTimestampSpan.textContent = `Updated on: ${formatDateTime(currentTime)}`;
+          // Store timestamp in local storage
+          localStorage.setItem('bpTimestamp', currentTime);
+      }
+  
+      function updateSugarTimestamp() {
+          const currentTime = new Date();
+          sugarTimestampSpan.textContent = `Updated on: ${formatDateTime(currentTime)}`;
+          // Store timestamp in local storage
+          localStorage.setItem('sugarTimestamp', currentTime);
+      }
+  
+      bpInput.addEventListener('change', function() {
+          updateBPTimestamp();
+      });
+  
+      sugarInput.addEventListener('change', function() {
+          updateSugarTimestamp();
+      });
+  
+      function updateTimestampsIfOlderThan12Hours() {
+          const now = new Date();
+          const twelveHoursAgo = new Date(now - 12 * 60 * 60 * 1000);
+          const bpTimestamp = new Date(localStorage.getItem('bpTimestamp'));
+          const sugarTimestamp = new Date(localStorage.getItem('sugarTimestamp'));
+  
+          if (bpTimestamp && bpTimestamp < twelveHoursAgo) {
+              updateBPTimestamp();
+          }
+  
+          if (sugarTimestamp && sugarTimestamp < twelveHoursAgo) {
+              updateSugarTimestamp();
+          }
+      }
+  
+      window.addEventListener('load', function() {
+          const bpTimestamp = localStorage.getItem('bpTimestamp');
+          const sugarTimestamp = localStorage.getItem('sugarTimestamp');
+          if (bpTimestamp) {
+              bpTimestampSpan.textContent = `Updated on: ${formatDateTime(new Date(bpTimestamp))}`;
+          }
+          if (sugarTimestamp) {
+              sugarTimestampSpan.textContent = `Updated on: ${formatDateTime(new Date(sugarTimestamp))}`;
+          }
+  
+          updateTimestampsIfOlderThan12Hours();
+      });
+  </script>
+  
+  
+  
+     
 </body>
 
 </html>

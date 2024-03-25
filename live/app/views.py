@@ -16,8 +16,10 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 def index(request):
     # uid=request.session['username']
-
-    return render(request,"index-2.html")
+    doctor_details = DoctorRegister.objects.all()
+  
+  
+    return render(request,"index-2.html", {"doctor_details": doctor_details})
 
 
 def cart(request):
@@ -142,7 +144,7 @@ def register(request):
         request.session['phonenumber'] = phonenumber
         request.session['password'] = password
         # Check if username already exists
-        if Register.objects.filter(username=username).exists():
+        if Register.objects.filter(email=email).exists():
             error_messages = 'Username already exists.'
             messages.info(request, error_messages)
             return HttpResponseRedirect('login')
@@ -175,7 +177,7 @@ def user_login(request):
             request.session['email'] = email
             request.session['username'] =user.username
             request.session.save()
-            return HttpResponseRedirect('index')
+            return render(request,"index-2.html",{'uid':user.username})
         else:
             print("123",user)
             # User exists, set session flag and redirect to the home page or any other desired URL
@@ -314,10 +316,9 @@ def doctorprofile(request):
     if 'email' in request.session:
         email = request.session['email']
         doctor_details = DoctorRegister.objects.filter(email=email).first() 
-        print('jhjjkhhjghkhkjhkjhkjhkjhkjhjkhjkhjkhjkhjkhjkhjkhujkjhkjhjhkjhjkhjkhj')
-        print(doctor_details.image)
+        patient_details = Register.objects.all()
          # Retrieve the first record matching the email
-        return render(request, "doctorprofile.html", {"doctor_details": doctor_details})
+        return render(request, "doctorprofile.html", {"doctor_details": doctor_details,"patient_details":patient_details})
   
 
 
@@ -325,11 +326,11 @@ def doctorprofile(request):
 
 
 def doctorlogin(request):
-    return render(request,"doctorlogin/signup.html")
+    return render(request,"doctorlogin/signin.html")
 
 
 def doctorsignin(request):
-    return render(request,"doctorlogin/signin.html")
+    return render(request,"doctorlogin/signup.html")
 
 
 
@@ -347,7 +348,7 @@ def doctor_login(request):
         # print("1",user.username)
 
         if user:
-            print("12",user.username)
+            
             # User exists, set session flag and redirect to the home page or any other desired URL
             request.session['is_doclogged_in'] = True
             request.session['email'] = email
@@ -355,16 +356,16 @@ def doctor_login(request):
             uid=request.session['username']
             
             request.session.save()
-            return render(request,"index-2.html",{"uid":uid})
+            return HttpResponseRedirect('doctorprofile')
             # return HttpResponseRedirect('index')
         else:
-            print("123",user)
+            
             # User exists, set session flag and redirect to the home page or any other desired URL
             
             if request.session['email'] != email or request.session['username'] !=user.username :
                 error_message = 'Incorrect Username or password. Please try again.'
                 messages.info(request, error_message)
-                print(error_message)
+              
                 return HttpResponseRedirect('doctorsignin')
             else:
             # User does not exist or email/password combination is incorrect
@@ -395,8 +396,8 @@ def docregister(request):
         request.session['phonenumber'] = phonenumber
         request.session['password'] = password
         # Check if username already exists
-        if DoctorRegister.objects.filter(username=username).exists():
-            error_messages = 'Username already exists.'
+        if DoctorRegister.objects.filter(email=email).exists():
+            error_messages = 'Email already exists.'
             messages.info(request, error_messages)
             return HttpResponseRedirect('doctorlogin')
         
@@ -470,7 +471,7 @@ def verifyotp1(request):
             user = DoctorRegister.objects.create(username=username, email=email,phonenumber=phonenumber ,password=password).save()
             request.session['is_doclogged_in']=True
             
-            return HttpResponseRedirect('index')
+            return HttpResponseRedirect('doctorprofile')
         else:
             messages.error(request, 'Invalid OTP')
 
@@ -486,7 +487,8 @@ def docprofsave(request):
         exp = request.POST.get('exp')
         spec = request.POST.get('spec')
         cntry = request.POST.get('cntry')
-        email = request.session['email']  # Assuming the user's email is used as the lookup value
+        email = request.session['email'] 
+        desc = request.POST.get('desc') # Assuming the user's email is used as the lookup value
         
         # Retrieve existing record based on user's email
         doc_register = get_object_or_404(DoctorRegister, email=email)
@@ -502,6 +504,8 @@ def docprofsave(request):
             doc_register.spec = spec
         if doc_register.cntry != cntry:
             doc_register.cntry = cntry
+        if doc_register.desc != desc:
+            doc_register.desc = desc
 
         # Save the changes
         doc_register.save()
@@ -620,3 +624,95 @@ def delete_image(request):
             doctor.delete()
             return JsonResponse({'status': 'success'})
     return JsonResponse({'status': 'error'})
+
+
+
+
+def patientprofile(request):
+    if 'email' in request.session:
+        email = request.session['email']
+        doctor_details = Register.objects.filter(email=email).first() 
+         # Retrieve the first record matching the email
+        return render(request, "patientprofile.html", {"doctor_details": doctor_details})
+
+
+
+
+
+
+
+def patprofsave(request):
+    if request.method == 'POST':
+        # Retrieve form data
+        uid=request.session['username']
+        name = request.POST.get('name')
+        contact = request.POST.get('contact')
+        bystander = request.POST.get('bystander')
+        bystandercontact = request.POST.get('bystandercontact')
+        height = request.POST.get('height')
+        weight = request.POST.get('weight')
+        bp = request.POST.get('bp')
+        sugar = request.POST.get('sugar')
+        email = request.session['email'] 
+        cntry = request.POST.get('cntry') # Assuming the user's email is used as the lookup value
+        
+        # Retrieve existing record based on user's email
+        doc_register = get_object_or_404(Register, email=email)
+        
+        # Compare with existing data and update only if changed
+        if doc_register.username != name:
+            doc_register.username = name
+        if doc_register.phonenumber != contact:
+            doc_register.phonenumber = contact
+        if doc_register.bystander != bystander:
+            doc_register.bystander= bystander
+        if doc_register.bystandercontact != bystandercontact:
+            doc_register.bystandercontact = bystandercontact
+        if doc_register.cntry != cntry:
+            doc_register.cntry = cntry
+        if doc_register.height != height:
+            doc_register.height = height
+        if doc_register.weight != weight:
+            doc_register.weight = weight
+        if doc_register.bp != bp:
+            doc_register.bp = bp
+        if doc_register.sugar != sugar:
+            doc_register.sugar= sugar
+
+        # Save the changes
+        doc_register.save()
+        
+        return HttpResponseRedirect('patientprofile')  # Redirect to success page or wherever you want
+    else:
+        return HttpResponseRedirect('patientprofile')    
+    
+
+
+
+
+def paupload_image(request):
+    if request.method == 'POST' and request.FILES.get('image'):
+        image = request.FILES['image']
+        email = request.session['email']  # Assuming the user's email is used as the lookup value
+        
+        # Retrieve existing record based on user's email
+        doc_register = get_object_or_404(Register, email=email)
+        if doc_register.image != image:
+            doc_register.image = image
+            doc_register.save()
+        # doctor = DoctorRegister(image=image)
+        # doctor.save()
+        
+     
+        return JsonResponse({'status': 'success'})
+     
+        
+    return JsonResponse({'status': 'error'})
+
+
+
+
+
+
+def trail(request):
+    return render(request,"jhgjhghghjgjh.html")

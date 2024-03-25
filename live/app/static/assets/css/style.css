@@ -4171,6 +4171,20 @@ div#main_search_collapse2 {
 
 
 }
+
+.navbar_user_icon .fa-heart {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  line-height: 3rem;
+  text-align: center;
+  border-radius: 100%;
+  background-color: orange;
+
+
+}
+
+
 .navbar_user_icon .fa-shopping-bag {
   width: 3rem;
   height: 3rem;
@@ -9383,7 +9397,7 @@ input[type=text]:focus {
     border: 1px solid #81c408;
     border-radius: 100%;
   }
-  .navbar_user_icon .fa-user,
+  .navbar_user_icon .fa-user .fa-heart
 .navbar_user_icon .fa-user-md {
     width: 2.3rem;
     height: 2.3rem;

@@ -42,7 +42,11 @@ urlpatterns = [
       path('numb_otp',views.numb_otp),
       path("numbverify_otp",views.numbverify_otp),
          path('upload_image',views.upload_image),
+         path('paupload_image',views.paupload_image),
     path('delete_image',views.delete_image),
+    path('patientprofile',views.patientprofile),
+    path('patprofsave',views.patprofsave),
+    path('trail',views.trail),
     
 ]
 
