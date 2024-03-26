@@ -47,6 +47,8 @@ urlpatterns = [
     path('patientprofile',views.patientprofile),
     path('patprofsave',views.patprofsave),
     path('trail',views.trail),
+    path('kl',views.kl),
+     path('save-medical-record/', views.save_medical_record, name='save_medical_record'),
     
 ]
 

@@ -1,5 +1,8 @@
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse
 from app import models
+import json
+from django.http import JsonResponse
+
 from django.contrib import messages
 from .models import*
 from django_otp.plugins.otp_totp.models import TOTPDevice
@@ -317,8 +320,9 @@ def doctorprofile(request):
         email = request.session['email']
         doctor_details = DoctorRegister.objects.filter(email=email).first() 
         patient_details = Register.objects.all()
+        details = MedicalRecord.objects.all()
          # Retrieve the first record matching the email
-        return render(request, "doctorprofile.html", {"doctor_details": doctor_details,"patient_details":patient_details})
+        return render(request, "doctorprofile.html", {"doctor_details": doctor_details,"patient_details":patient_details,"details":details})
   
 
 
@@ -716,3 +720,34 @@ def paupload_image(request):
 
 def trail(request):
     return render(request,"jhgjhghghjgjh.html")
+
+
+
+def kl(request):
+    return render(request,"kl.html")
+
+
+
+
+
+def save_medical_record(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        patient_name = data.get('patientName')
+        medicine = data.get('medicine')
+        time = data.get('time')
+        date = data.get('date')
+        allergies = data.get('allergies')
+
+        # Save data to MedicalRecord table
+        medical_record = MedicalRecord.objects.create(
+            patient_name=patient_name,
+            medicine=medicine,
+            time=time,
+            date=date,
+            allergies=allergies
+        )
+
+        return JsonResponse({"message": "Medical record saved successfully!"})
+
+    return JsonResponse({"error": "Method not allowed."}, status=405)

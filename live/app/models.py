@@ -34,3 +34,15 @@ class DoctorRegister(models.Model):
     is_active = models.BooleanField(default=False)
     # verification_code = models.CharField(max_length=100, blank=True, null=True)
     last_login=models.DateTimeField(null=True,blank=True)
+
+
+
+class MedicalRecord(models.Model):
+    patient_name = models.CharField(max_length=100)
+    medicine = models.CharField(max_length=100)
+    time = models.TimeField()
+    date = models.DateField()
+    allergies = models.TextField()
+
+    def __str__(self):
+        return self.patient_name

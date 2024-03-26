@@ -5,3 +5,4 @@ from .models import*
 
 admin.site.register(Register)
 admin.site.register(DoctorRegister)
+admin.site.register(MedicalRecord)
